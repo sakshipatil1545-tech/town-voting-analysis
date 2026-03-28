@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome - Town Voting System 2026</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Animated background elements */
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .floating-element {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: float 20s infinite;
+        }
+        
+        .floating-element:nth-child(1) {
+            width: 200px;
+            height: 200px;
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+        
+        .floating-element:nth-child(2) {
+            width: 300px;
+            height: 300px;
+            top: 60%;
+            right: 5%;
+            animation-delay: -5s;
+        }
+        
+        .floating-element:nth-child(3) {
+            width: 150px;
+            height: 150px;
+            bottom: 20%;
+            left: 15%;
+            animation-delay: -10s;
+        }
+        
+        .floating-element:nth-child(4) {
+            width: 250px;
+            height: 250px;
+            top: 30%;
+            right: 15%;
+            animation-delay: -15s;
+        }
+        
+        .floating-element:nth-child(5) {
+            width: 100px;
+            height: 100px;
+            bottom: 40%;
+            left: 25%;
+            animation-delay: -7s;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0) scale(1);
+            }
+            25% {
+                transform: translateY(-50px) translateX(30px) scale(1.1);
+            }
+            50% {
+                transform: translateY(20px) translateX(-30px) scale(0.9);
+            }
+            75% {
+                transform: translateY(50px) translateX(20px) scale(1.05);
+            }
+        }
+        
+        /* Main container */
+        .welcome-container {
+            position: relative;
+            z-index: 2;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        /* Content card */
+        .welcome-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 60px 40px;
+            max-width: 900px;
+            width: 100%;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            transform: translateY(0);
+            animation: cardFloat 3s ease-in-out infinite;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        @keyframes cardFloat {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        /* Logo and title section */
+        .logo-section {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: fadeInDown 1.2s ease-out;
+        }
+        
+        .logo-icon {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.4);
+            animation: rotateIcon 20s linear infinite;
+        }
+        
+        @keyframes rotateIcon {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        .logo-icon i {
+            font-size: 60px;
+            color: white;
+        }
+        
+        .logo-section h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+        
+        .logo-section .subtitle {
+            font-size: 1.3rem;
+            color: #555;
+            font-weight: 500;
+        }
+        
+        /* Year badge */
+        .year-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 8px 25px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-top: 15px;
+            box-shadow: 0 10px 20px rgba(245, 87, 108, 0.3);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+        
+        /* Features grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            margin: 50px 0;
+            animation: fadeInUp 1.5s ease-out;
+        }
+        
+        .feature-item {
+            text-align: center;
+            padding: 25px 15px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            animation: featureFloat 3s ease-in-out infinite;
+            animation-delay: calc(var(--i) * 0.2s);
+        }
+        
+        .feature-item:nth-child(1) { --i: 1; }
+        .feature-item:nth-child(2) { --i: 2; }
+        .feature-item:nth-child(3) { --i: 3; }
+        .feature-item:nth-child(4) { --i: 4; }
+        
+        @keyframes featureFloat {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+        
+        .feature-item:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+        }
+        
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 28px;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-item:hover .feature-icon {
+            transform: rotate(360deg);
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+        }
+        
+        .feature-item h3 {
+            color: #333;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .feature-item p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* Stats section */
+        .stats-section {
+            display: flex;
+            justify-content: space-around;
+            margin: 40px 0;
+            animation: fadeIn 2s ease-out;
+        }
+        
+        .stat-item {
+            text-align: center;
+            position: relative;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #667eea;
+            display: inline-block;
+            animation: countUp 3s ease-out;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 1rem;
+            font-weight: 500;
+            margin-top: 5px;
+        }
+        
+        @keyframes countUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* CTA Button */
+        .cta-section {
+            text-align: center;
+            margin-top: 40px;
+            animation: fadeInUp 2s ease-out;
+        }
+        
+        .get-started-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            padding: 20px 60px;
+            border-radius: 60px;
+            font-size: 1.4rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.4);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .get-started-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.7s ease;
+        }
+        
+        .get-started-btn:hover::before {
+            left: 100%;
+        }
+        
+        .get-started-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 30px 50px rgba(102, 126, 234, 0.6);
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+        }
+        
+        .get-started-btn:active {
+            transform: translateY(0) scale(0.95);
+        }
+        
+        .get-started-btn i {
+            font-size: 1.6rem;
+            animation: arrowMove 1.5s infinite;
+        }
+        
+        @keyframes arrowMove {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            50% {
+                transform: translateX(10px);
+            }
+        }
+        
+        /* Footer */
+        .footer-text {
+            text-align: center;
+            margin-top: 40px;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+            animation: fadeIn 2.5s ease-out;
+        }
+        
+        .footer-text i {
+            color: #ff6b6b;
+            animation: heartBeat 1.3s infinite;
+        }
+        
+        @keyframes heartBeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+        }
+        
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .welcome-card {
+                padding: 40px 20px;
+            }
+            
+            .logo-section h1 {
+                font-size: 2.5rem;
+            }
+            
+            .logo-section .subtitle {
+                font-size: 1rem;
+            }
+            
+            .logo-icon {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .logo-icon i {
+                font-size: 50px;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .stats-section {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .get-started-btn {
+                padding: 15px 40px;
+                font-size: 1.2rem;
+                width: 100%;
+            }
+            
+            .floating-element {
+                opacity: 0.3;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo-section h1 {
+                font-size: 2rem;
+            }
+            
+            .year-badge {
+                font-size: 1rem;
+                padding: 6px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated floating background elements -->
+    <div class="floating-elements">
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+    </div>
+
+    <!-- Main welcome container -->
+    <div class="welcome-container">
+        <div class="welcome-card">
+            <!-- Logo and title section -->
+            <div class="logo-section">
+                <div class="logo-icon">
+                    <i class="fas fa-vote-yea"></i>
+                </div>
+                <h1>Town Voting System</h1>
+                <p class="subtitle">Sangli District Municipal Elections</p>
+                <div class="year-badge">
+                    <i class="fas fa-calendar-alt"></i> 2026
+                </div>
+            </div>
+
+            <!-- Statistics section with animated numbers -->
+            <div class="stats-section">
+                <div class="stat-item">
+                    <span class="stat-number" id="stat1">68K+</span>
+                    <div class="stat-label">Registered Voters</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="stat2">45K+</span>
+                    <div class="stat-label">Votes Cast</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="stat3">15+</span>
+                    <div class="stat-label">Villages</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="stat4">5</span>
+                    <div class="stat-label">Candidates</div>
+                </div>
+            </div>
+
+            <!-- CTA Button -->
+            <div class="cta-section">
+                <a href="login.php" class="get-started-btn">
+                    <span>Get Started</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+           
+        </div>
+    </div>
+
+    <!-- JavaScript for additional animations -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate statistics numbers on load
+            const stats = [
+                { element: document.getElementById('stat1'), target: 68450, suffix: '+' },
+                { element: document.getElementById('stat2'), target: 45230, suffix: '+' },
+                { element: document.getElementById('stat3'), target: 15, suffix: '' },
+                { element: document.getElementById('stat4'), target: 5, suffix: '' }
+            ];
+
+            // Function to animate counting
+            function animateValue(element, start, end, duration, suffix) {
+                if (!element) return;
+                
+                let startTimestamp = null;
+                const step = (timestamp) => {
+                    if (!startTimestamp) startTimestamp = timestamp;
+                    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                    const value = Math.floor(progress * (end - start) + start);
+                    element.textContent = value.toLocaleString() + suffix;
+                    if (progress < 1) {
+                        window.requestAnimationFrame(step);
+                    }
+                };
+                window.requestAnimationFrame(step);
+            }
+
+            // Start counting animation after a small delay
+            setTimeout(() => {
+                stats.forEach(stat => {
+                    const targetNum = stat.target;
+                    const displayNum = Math.floor(targetNum / 1000);
+                    if (stat.element) {
+                        if (targetNum > 1000) {
+                            animateValue(stat.element, 0, displayNum, 2000, 'K+');
+                        } else {
+                            animateValue(stat.element, 0, targetNum, 2000, stat.suffix);
+                        }
+                    }
+                });
+            }, 500);
+
+            // Add parallax effect to floating elements on mouse move
+            document.addEventListener('mousemove', function(e) {
+                const floatingElements = document.querySelectorAll('.floating-element');
+                const mouseX = e.clientX / window.innerWidth;
+                const mouseY = e.clientY / window.innerHeight;
+                
+                floatingElements.forEach((element, index) => {
+                    const speed = 30 * (index + 1);
+                    const x = (mouseX * speed) - (speed / 2);
+                    const y = (mouseY * speed) - (speed / 2);
+                    element.style.transform = `translate(${x}px, ${y}px)`;
+                });
+            });
+
+            // Add ripple effect to button
+            const button = document.querySelector('.get-started-btn');
+            button.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                ripple.classList.add('ripple');
+                this.appendChild(ripple);
+                
+                const x = e.clientX - e.target.offsetLeft;
+                const y = e.clientY - e.target.offsetTop;
+                
+                ripple.style.left = `${x}px`;
+                ripple.style.top = `${y}px`;
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+
+            // Add typing effect to subtitle (optional)
+            const subtitle = document.querySelector('.subtitle');
+            const originalText = subtitle.textContent;
+            subtitle.textContent = '';
+            
+            let i = 0;
+            function typeWriter() {
+                if (i < originalText.length) {
+                    subtitle.textContent += originalText.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 50);
+                }
+            }
+            
+            // Uncomment below for typing effect
+            // setTimeout(typeWriter, 1000);
+        });
+
+        // Add smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Preload login page when hovering over button
+        const loginBtn = document.querySelector('.get-started-btn');
+        loginBtn.addEventListener('mouseenter', function() {
+            const link = document.createElement('link');
+            link.rel = 'prefetch';
+            link.href = 'login.html';
+            document.head.appendChild(link);
+        });
+    </script>
+
+    <!-- Add ripple effect styles -->
+    <style>
+        .get-started-btn {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            transform: scale(0);
+            animation: ripple-animation 0.6s ease-out;
+            pointer-events: none;
+        }
+        
+        @keyframes ripple-animation {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+        
+        /* Glow effect for cards */
+        .feature-item {
+            position: relative;
+        }
+        
+        .feature-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+        
+        .feature-item:hover::after {
+            opacity: 0.1;
+        }
+        
+        /* Loading animation for the logo */
+        .logo-icon {
+            position: relative;
+        }
+        
+        .logo-icon::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border-radius: 35px;
+            background: linear-gradient(135deg, #667eea, #764ba2, #667eea);
+            background-size: 200% 200%;
+            animation: borderGlow 3s ease infinite;
+            z-index: -1;
+            opacity: 0.5;
+        }
+        
+        @keyframes borderGlow {
+            0%, 100% {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.6;
+                transform: scale(1.05);
+            }
+        }
+    </style>
+</body>
+</html>
